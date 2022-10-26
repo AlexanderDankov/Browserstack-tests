@@ -17,9 +17,17 @@ public class BrowserStackMobileDriver implements WebDriverProvider {
 
     public static CredentialConfig credentials = ConfigFactory.create(CredentialConfig.class);
 
+//    public static URL getBrowserStackUrl() {
+//        try {
+//            return new URL(format("http://%s/wd/hub", credentials.remote_url()));
+//        } catch (MalformedURLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
     public static URL getBrowserStackUrl() {
         try {
-            return new URL(format("http://%s/wd/hub", credentials.remote_url()));
+            return new URL("http://hub-cloud.browserstack.com/wd/hub");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
