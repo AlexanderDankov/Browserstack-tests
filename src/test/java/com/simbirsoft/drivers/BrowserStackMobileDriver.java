@@ -17,17 +17,9 @@ public class BrowserStackMobileDriver implements WebDriverProvider {
 
     public static CredentialConfig credentials = ConfigFactory.create(CredentialConfig.class);
 
-//    public static URL getBrowserStackUrl() {
-//        try {
-//            return new URL(format("http://%s/wd/hub", credentials.remote_url()));
-//        } catch (MalformedURLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     public static URL getBrowserStackUrl() {
         try {
-            return new URL("http://hub-cloud.browserstack.com/wd/hub");
+            return new URL(format("http://%s/wd/hub", credentials.remote_url()));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -37,11 +29,8 @@ public class BrowserStackMobileDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(@Nonnull DesiredCapabilities desiredCapabilities) {
         // Set your access credentials
-//        desiredCapabilities.setCapability("browserstack.user", credentials.remote_user());
-//        desiredCapabilities.setCapability("browserstack.key", credentials.remote_key());
-
-        desiredCapabilities.setCapability("browserstack.user", "dankovalexander_2yl8UX");
-        desiredCapabilities.setCapability("browserstack.key", "W2RpSucJxcr84KwAcs89");
+        desiredCapabilities.setCapability("browserstack.user", credentials.remote_user());
+        desiredCapabilities.setCapability("browserstack.key", credentials.remote_key());
 
         // Set URL of the application under test
         desiredCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");

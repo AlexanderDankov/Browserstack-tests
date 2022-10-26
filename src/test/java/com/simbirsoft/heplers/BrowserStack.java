@@ -1,12 +1,17 @@
 package com.simbirsoft.heplers;
 
+import com.simbirsoft.config.CredentialConfig;
+import org.aeonbits.owner.ConfigFactory;
+
 import static io.restassured.RestAssured.given;
 
 public class BrowserStack {
 
+    public static CredentialConfig credentials = ConfigFactory.create(CredentialConfig.class);
+
     public static String videoUrl(String sessionId) {
         return given()
-                .auth().basic("dankovalexander_2yl8UX", "W2RpSucJxcr84KwAcs89")
+                .auth().basic(credentials.remote_user(), credentials.remote_key())
                 .when()
                 .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId +".json")
                 .then()
